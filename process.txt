@@ -1,0 +1,44 @@
+* I made two ... the commented out functions are for <a href> tags (I misread any tags in the instructions)
+
+My initial thought process was:
+
+== Get Data via Http/Https Get => Parse Data for Links ==
+
+=== function DownloadWebPage() ===
+Since http requests are asynchronous in nature, I made a function that returns a promise with the http response data.
+0) I used Postman to GET request as well in order to confirm any problems from the node http request / to double check received data against my own
+1) Added User-Agent for rare sites that deny anonymous requests
+2) Added recursion loop up to 5 reattempts for destination for temporary redirection (300 - 399 status codes) 
+3) basic err handling
+
+=== Parsing ===
+
+So first thing I did is go on web mdn to get an updated list of url attributes. I tried to peruse through all the relevant ones -- skipping
+all the ones that are 'deprecated'. Since the task was to get all links (regardless of tags), the idea was to get all relevant attributes and filter them out:
+1) Split the data string by 'space', and look for relevant attribute tags with `xxx="` (ie href=" or src=") and store into array
+    1a) Find the indexOf said attributes and filter the string by `"` assuming that all links start and end with `"`
+        1a.e) href="xxxxxxxxxx" w/ split == ['href=', xxxxxxxxx, '']
+    1b) Get split[1] and if it doesn't exist return -1
+
+2) Now I filtered the string we got from (1) with some arbitrary "rules" I found by looking at page html via console:
+    1) If string started with http or https ... simply return split[1] else...
+        1a) All routes must include special characters (#, ./, /, etc)
+        1b) If the first character is not #, ./, assume it's not following route "protocol"
+    2) Join the filtered string to the url based on console link format (see ****)
+
+3) With all the (hopefully) filtered links, run values through Set to filter out redundancies
+    and console.log/console.table
+
+
+3b) For the commented out parts, I basically did above but parsed by the <a> tag and I used 
+    cheerio and **** function below to test my results against. 
+
+**** I ran this through browser console to get links
+    var array = [];
+    var links = document.getElementsByTagName("a");
+    for(var i=0, max=links.length; i<max; i++) {
+        if(links[i].href != "") array.push(links[i].href);
+    }
+
+    let unique = [...new Set(array)];
+    console.log(unique);
