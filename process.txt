@@ -1,5 +1,20 @@
 * I made two ... the commented out functions are for <a href> tags (I misread any tags in the instructions)
 
+SOURCES = [
+    https://nodejs.org/docs/latest-v18.x/api/,
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes,
+    https://stackoverflow.com/questions/25726214/javascript-check-if-a-giving-string-contains-only-letters-or-digits,
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String,
+    https://stackoverflow.com/questions/10895406/what-is-the-maximum-number-of-http-redirections-allowed-by-all-major-browsers,
+    https://cheerio.js.org/docs/api
+]
+
+Test Sites = [
+    https://www.prycd.com/,
+    https://www.wikipedia.org/,
+    https://nodejs.org/docs/latest-v18.x/api/async_hooks.html
+]
+
 My initial thought process was:
 
 == Get Data via Http/Https Get => Parse Data for Links ==

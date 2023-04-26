@@ -28,7 +28,7 @@ async function main() {
     // }
 
     try {
-        const myUrl = new URL('https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes');
+        const myUrl = new URL('https://www.wikipedia.org/');
         const webdata = await downloadWebPage(myUrl);
         const newLinks = getAllLinks(webdata.data, myUrl);
         var uniqueLinks = [...new Set(newLinks)];
